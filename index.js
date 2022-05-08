@@ -47,6 +47,7 @@ app.get( "/", ( req, res, next ) => {
 
 app.post('/update', async (req, res) => {
     try {
+        console.log('update with', req.body);
         const filePath = req.body.filePath;    
         await upsertPost(filePath);
         res.status(200).send(filePath);
@@ -62,8 +63,6 @@ app.listen( port, () => {
     // tslint:disable-next-line:no-console
     console.log( `server started at http://localhost:${ port }` );
 });
-
-
 
 
 const startHomepageServer = () => {
