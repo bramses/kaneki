@@ -125,10 +125,22 @@ const upsertPost = async (filePath) => {
     const file = `${HOMEPAGE_PATH}/_posts/${slug}.mdx`;
     const event = new Date();
 
+    let published, featured;
+    if (frontmatter.published) {
+        published = frontmatter.published;
+    } else {
+        published = true;
+    }
+    if (frontmatter.featured) {
+        featured = frontmatter.featured;
+    } else {
+        featured = false;
+    }
+
     const mdx = `---
 title: ${frontmatter.title}
-featured: false
-published: true
+featured: ${featured}
+published: ${published}
 ogSlug: '${slug}'
 ogImageUrl: '${frontmatter.ogImageUrl}'
 coverImage: '${frontmatter.ogImageUrl}'
