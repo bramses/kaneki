@@ -62,6 +62,7 @@ app.post('/open', async (req, res) => {
         console.log('open with', req.body);
         const slug = req.body.slug;
         openPostInChrome(slug);
+        res.status(200).send(slug);
     } catch (err) {
         res.status(500).send(err);
     }
