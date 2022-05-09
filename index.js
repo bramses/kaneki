@@ -57,11 +57,24 @@ app.post('/update', async (req, res) => {
     }
 })
 
+app.post('/open', async (req, res) => {
+    try {
+        console.log('open with', req.body);
+        const slug = req.body.slug;
+        openPostInChrome(slug);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+})
+
 
 // start the express server
-app.listen( port, () => {
+app.listen(port, () => {
     // tslint:disable-next-line:no-console
     console.log( `server started at http://localhost:${ port }` );
+    console.log('starting homepage server');
+    startHomepageServer();
+    console.log('started homepage server on localhost:3000');
 });
 
 
@@ -128,11 +141,3 @@ ${markdownBody}`;
     writeFileSync(file, mdx);
     return { slug };
 }
-
-const main = async () => {
-    const { slug } = await upsertPost(`${OBSIDIAN_PATH}/testblog.md`);
-    startHomepageServer();
-    openPostInChrome(slug);
-}
-
-main();
