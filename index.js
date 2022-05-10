@@ -112,6 +112,12 @@ const openPostInChrome = (slug) => {
     open("http://localhost:3000/projects/" + slug);
 }
 
+ /*
+ This code is taking the markdown file and converting it to a mdx file 
+ The frontmatter data is being extracted from the markdown file then converted into an object.
+ Then we are checking if there\'s a slug in the frontmatter or not.
+ If there isn\'t one throw  an error because that means we can\'t create a post without a slug
+*/
 const upsertPost = async (filePath) => {
     const markdown = read(filePath);
     const frontmatter = markdown.data;
