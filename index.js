@@ -132,12 +132,14 @@ const upsertPost = async (filePath) => {
     const event = new Date();
 
     let published, featured;
-    if (frontmatter.published) {
+ 
+    if (frontmatter.hasOwnProperty('published')) {
         published = frontmatter.published;
+        console.log('frontmatter published found')
     } else {
         published = true;
     }
-    if (frontmatter.featured) {
+    if (frontmatter.hasOwnProperty('featured')) {
         featured = frontmatter.featured;
     } else {
         featured = false;
