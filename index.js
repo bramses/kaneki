@@ -121,7 +121,7 @@ const openPostInChrome = (slug) => {
 const upsertPost = async (filePath) => {
     const markdown = read(filePath);
     const frontmatter = markdown.data;
-    const markdownBody = markdown.content;
+    const markdownBody = markdown.content.replace(/--outline--\n*[\s\S]*?\n*--outline--/, '');
     const slug = frontmatter.slug;
 
     if (!slug) {
